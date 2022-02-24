@@ -130,7 +130,7 @@ pair<bool, vector<int>> matchRoles(vector<Skill> skills) {
             mxLevel[e.skill] = max(mxLevel[e.skill], e.level);
         }
     }
-    debug(skills.size(), res.size(), res);
+    // debug(skills.size(), res.size(), res);
     return make_pair(true, res);
 }
 
@@ -138,6 +138,7 @@ void solve(vector<int> p) {
     for (int i = 0; i < C; i++) {
         availableC.insert(i);
     }
+
     // aps ids
     set<pair<int, int>> freed;
     int prev = aps.size();
@@ -146,7 +147,6 @@ void solve(vector<int> p) {
         for (int i = 0; i < p.size();) {
             int pid = p[i];
             auto foo = matchRoles(projects[pid].vskills);
-            debug(projects[pid].vskills.size());
             if (foo.first == false) {
                 i++;
             } else {
@@ -172,10 +172,14 @@ void solve(vector<int> p) {
         assert(cIds.size() == projects[pid].vskills.size());
         for (int i = 0; i < projects[pid].vskills.size(); i++) {
             string skill = projects[pid].vskills[i].skill;
-            contributors[cIds[i]].skills[skill]++;
-            for (auto &e : contributors[cIds[i]].vskills) {
-                if (e.skill == skill) e.level++;
+            int curSkill = contributors[cIds[i]].skills[skill];
+            if (curSkill <= projects[pid].vskills[i].level) {
+                contributors[cIds[i]].skills[skill]++;
+                for (auto &e : contributors[cIds[i]].vskills) {
+                    if (e.skill == skill) e.level++;
+                }
             }
+
             availableC.insert(cIds[i]);
         }
 
@@ -202,11 +206,13 @@ int main() {
     cin.tie(nullptr);
 
     input();
-    vector<int> p(C);
-    for (int i = 0; i < C; i++) p[i] = i;
+    vector<int> p(P);
+    for (int i = 0; i < P; i++) p[i] = i;
     solve(p);
 
     output();
+
+    cerr << "\nTime elapsed: " << 1000 * clock() / CLOCKS_PER_SEC << "ms\n";
 
     return 0;
 }

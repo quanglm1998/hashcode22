@@ -2,7 +2,7 @@ scorer:
 	g++ -std=c++17 -o scorer scorer.cpp
 
 main: main.cpp
-	g++ -std=c++17 -DLOCAL -o main main.cpp
+	g++ -O2 -std=c++17 -DLOCAL -o main main.cpp
 
 all:
 	g++ -std=c++17 -o scorer scorer.cpp
