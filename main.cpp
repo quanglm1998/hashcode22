@@ -173,10 +173,11 @@ void solve(vector<int> p) {
         for (int i = 0; i < projects[pid].vskills.size(); i++) {
             string skill = projects[pid].vskills[i].skill;
             int curSkill = contributors[cIds[i]].skills[skill];
-            if (curSkill <= projects[pid].vskills[i].level)
-            contributors[cIds[i]].skills[skill]++;
-            for (auto &e : contributors[cIds[i]].vskills) {
-                if (e.skill == skill) e.level++;
+            if (curSkill <= projects[pid].vskills[i].level) {
+                contributors[cIds[i]].skills[skill]++;
+                for (auto &e : contributors[cIds[i]].vskills) {
+                    if (e.skill == skill) e.level++;
+                }
             }
             availableC.insert(cIds[i]);
         }
