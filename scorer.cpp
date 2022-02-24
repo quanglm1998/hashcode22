@@ -26,7 +26,6 @@ int32_t main(int32_t argc, char *argv[]) {
         projects[p->name] = p;
     }
 
-
     int e;
     answer >> e;
     map<string, int> busy_to;
