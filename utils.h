@@ -8,22 +8,22 @@ struct Contributor {
     string name;
     map<string, int> skills;
 
-    void Read() {
-        cin >> name;
+    void Read(ifstream& I) {
+        I >> name;
         int n;
-        cin >> n;
+        I >> n;
         for (int i = 0; i < n; i++) {
             string skill_name;
             int lv;
-            cin >> skill_name >> lv;
+            I >> skill_name >> lv;
             skills[skill_name] = lv;
         }
     }
 
     void Write() {
-        cout << "Contributor: " << name << '\n';
+        cerr << "Contributor: " << name << '\n';
         for (auto [skill, lv] : skills) {
-            cout << skill << ' ' << lv << '\n';
+            cerr << skill << ' ' << lv << '\n';
         }
     }
 };
@@ -35,20 +35,20 @@ struct Project {
     int deadline;
     vector< pair<string, int> > roles;
 
-    void Read() {
-        cin >> name >> duration >> score >> deadline;
+    void Read(ifstream& I) {
+        I >> name >> duration >> score >> deadline;
         int r;
-        cin >> r;
+        I >> r;
         roles.resize(r);
         for (auto &[skill, lv] : roles) {
-            cin >> skill >> lv;
+            I >> skill >> lv;
         }
     }
 
     void Write() {
-        cout << "Project: " << name << ' ' << duration << ' ' << score << ' ' << deadline << '\n';
+        cerr << "Project: " << name << ' ' << duration << ' ' << score << ' ' << deadline << '\n';
         for (auto &[skill, lv] : roles) {
-            cout << skill << ' ' << lv << '\n';
+            cerr << skill << ' ' << lv << '\n';
         }
     }
 
