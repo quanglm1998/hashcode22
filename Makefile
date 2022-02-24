@@ -1,11 +1,8 @@
-scorer:
-	g++ -std=c++17 -o scorer scorer.cpp
-
 main: main.cpp
 	g++ -O2 -std=c++17 -DLOCAL -o main main.cpp
 
 all:
-	g++ -std=c++17 -o scorer scorer.cpp
+	g++ -DLOCAL -std=c++17 -o scorer -O2 scorer.cpp
 
 run:
 	./main <a_an_example.in.txt >a_an_example.out.txt
