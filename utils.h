@@ -9,7 +9,22 @@ struct Contributor {
     map<string, int> skills;
 
     void Read() {
-        
+        cin >> name;
+        int n;
+        cin >> n;
+        for (int i = 0; i < n; i++) {
+            string skill_name;
+            int lv;
+            cin >> skill_name >> lv;
+            skills[skill_name] = lv;
+        }
+    }
+
+    void Write() {
+        cout << "Contributor: " << name << '\n';
+        for (auto [skill, lv] : skills) {
+            cout << skill << ' ' << lv << '\n';
+        }
     }
 };
 
@@ -19,6 +34,23 @@ struct Project {
     int score;
     int deadline;
     vector< pair<string, int> > roles;
+
+    void Read() {
+        cin >> name >> duration >> score >> deadline;
+        int r;
+        cin >> r;
+        roles.resize(r);
+        for (auto &[skill, lv] : roles) {
+            cin >> skill >> lv;
+        }
+    }
+
+    void Write() {
+        cout << "Project: " << name << ' ' << duration << ' ' << score << ' ' << deadline << '\n';
+        for (auto &[skill, lv] : roles) {
+            cout << skill << ' ' << lv << '\n';
+        }
+    }
 
     bool IsValid(vector<Contributor*>& list) {
         if (list.size() != roles.size()) {
